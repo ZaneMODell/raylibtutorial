@@ -1,6 +1,10 @@
 #pragma once
 
 #include <raylib.h>
+/**
+ * @brief Class that represents the window created for the game
+ * 
+ */
 
 class GameWindow {
     private:
@@ -14,8 +18,8 @@ class GameWindow {
         const char * m_background_path;
         /// @brief Background texture
         Texture2D m_background_texture;
-        /// @brief reference to the score in the window
-        int &m_score;
+        /// @brief score in the window
+        int m_score;
 
     protected:
 
@@ -26,9 +30,9 @@ class GameWindow {
         /// @param title window title
         /// @param texturename filepath to the background texture
         /// @param score reference to the score
-        GameWindow(int height, int width, const char * title, const char * texturename, int &score):
+        GameWindow(int height, int width, const char * title, const char * texturename):
             m_height(height), m_width(width), m_title(title), 
-            m_background_path(texturename), m_score(score){
+            m_background_path(texturename){
                 InitWindow(m_width, m_height, title);
                 m_background_texture = LoadTexture(m_background_path);
             }
@@ -51,6 +55,7 @@ class GameWindow {
 
         /// @brief Increases the score by 1
         void IncreaseScore(){m_score++;}
+
         /// @brief Reset the score
         void ResetScore(){m_score = 0;}
 

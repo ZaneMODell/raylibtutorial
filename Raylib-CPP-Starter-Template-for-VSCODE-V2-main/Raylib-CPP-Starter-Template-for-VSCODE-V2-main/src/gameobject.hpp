@@ -28,8 +28,8 @@ class GameObject{
         GameWindow & m_window;
         /// @brief Rectangle of this object, essentially its collider
         Rectangle m_rect;
-        
-        bool is_colliding;
+        /// @brief is this object colliding
+        bool m_is_colliding;
     public:
         /// @brief GameObject constructor
         /// @param width width of the object and its collider
@@ -40,34 +40,34 @@ class GameObject{
         /// @param window window that this object is a part of
         GameObject(float width, float height,  int x_pos, int y_pos, const char * texturename, GameWindow &window):
             m_width(width), m_height(height), m_x_pos(x_pos), m_y_pos(y_pos), m_texture_path(texturename), m_window(window){
-                m_rect = {static_cast<float>(m_x_pos), m_y_pos, m_width, m_height};
+                m_rect = {m_x_pos, m_y_pos, m_width, m_height};
                 m_texture = LoadTexture(m_texture_path);
                 DrawObject();
             }
 
-        ///Destructor
+        /// @brief virtual destructor
         virtual ~GameObject() = default;
         
-        ///Draws the current object
+        /// @brief Draws the object's texture at its current position
         void DrawObject(){
                 DrawTexture(m_texture, m_x_pos, m_y_pos, WHITE);   
         }
 
-        ///Gets height of the object and it's collider
+        /// @brief Gets height of the object and it's collider
         int GetHeight(){return m_height;}
-        ///Gets width of the object and it's collider
+        /// @brief Gets width of the object and it's collider
         int GetWidth(){return m_width;}
 
-        ///Gets the object's rectangle/collider
+        /// @brief Gets the object's rectangle/collider
         Rectangle GetRect(){return m_rect;}
         /// @brief Sets the bool that it is colliding with another GameObject
         /// @param collision bool that says if it is colliding or not
-        void SetCollision(bool collision){is_colliding = collision;}
+        void SetCollision(bool collision){m_is_colliding = collision;}
 
-        ///Returns if the object is currently colliding or not
-        bool GetCollision(){return is_colliding;}
+        /// @brief Returns if the object is currently colliding or not
+        bool GetCollision(){return m_is_colliding;}
 
-        ///Pure virtual update function, different for each class
+        /// @brief Pure virtual update function, different for each class
         virtual void Update() = 0;
 
 };

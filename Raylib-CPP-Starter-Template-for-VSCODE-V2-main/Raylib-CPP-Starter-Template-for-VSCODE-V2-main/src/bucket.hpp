@@ -3,7 +3,11 @@
 #include <raylib.h>
 #include "gameobject.hpp"
 
-/// @brief Class representing the bucket object 
+/**
+ * @brief Class representing the bucket object 
+ * 
+ */
+
 class Bucket: public GameObject{
 
     private:
